@@ -39,6 +39,23 @@ public class Driver {
     public static void getBalance(double balance) {
 	System.out.println("The balance is : " + balance);
     }
+    
+    public static void transferMoney(int account1, int account2) {
+	System.out.println("Withdraw money from account1 and add to account 2");
+    }
+    
+    public static void accountApproval(int accountBalance) {
+	if(accountBalance > 0) {
+	    System.out.println("Account approved");
+	} else {
+	    System.out.println("Account denied");
+	}
+    }
+    
+    public static void cancelAccount(int accountNumber) {
+	accountNumber = 0;
+	System.out.println("Account canceled");
+    }
 
     public static void main(String[] args) {
 
