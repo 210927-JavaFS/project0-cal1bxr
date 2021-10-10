@@ -18,7 +18,7 @@ public class AccountService {
 		return accountDao.findByNumber(number);
 	}
 	
-	public boolean newHome(Account home) {
-		return accountDao.addAccount(home);
+	public boolean newAccount(Account account) {
+		return accountDao.addAccount(account);
 	}
 }

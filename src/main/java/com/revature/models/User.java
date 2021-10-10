@@ -20,6 +20,18 @@ public class User {
 		this.accountActive = accountActive;
 
 	}
+	
+	
+
+	public User(String firstName, String lastName, String username, String password) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		this.password = password;
+	}
+
+
 
 	public User() {
 		super();
