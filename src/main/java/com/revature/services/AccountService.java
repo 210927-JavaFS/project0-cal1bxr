@@ -14,11 +14,15 @@ public class AccountService {
 		return accountDao.findAll();
 	}
 	
-	public Account findByNumber(int number) {
-		return accountDao.findByNumber(number);
+	public Account findByNumber(String accountNumber) {
+		return accountDao.findByNumber(accountNumber);
 	}
 	
 	public boolean newAccount(Account account) {
 		return accountDao.addAccount(account);
+	}
+	
+	public Account getBalance(double accountBalance) {
+		return accountDao.getBalance(accountBalance);
 	}
 }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.models.Account;
+import com.revature.models.User;
 import com.revature.utils.ConnectionUtil;
 
 public class AccountDAOImpl implements AccountDAO {
@@ -24,7 +25,7 @@ public class AccountDAOImpl implements AccountDAO {
 			while (result.next()) {
 				Account account = new Account();
 				account.setAccountUsername(result.getString("user_name"));
-				account.setAccountNumber(result.getInt("account_number"));
+				account.setAccountNumber(result.getString("account_number"));
 			}
 			return list;
 		} catch (SQLException e) {
@@ -34,18 +35,18 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 
 	@Override
-	public Account findByNumber(int number) {
+	public Account findByNumber(String number) {
 		try(Connection conn = ConnectionUtil.getConnection()){
 		
 		String sql = "SELECT * FROM accounts WHERE account_number = ?;";
 		PreparedStatement statement = conn.prepareStatement(sql);
-		statement.setInt(1, number);
+		statement.setString(1, number);
 		ResultSet result = statement.executeQuery();
 		Account account = new Account();
 		
 		if(result.next()) {
 			account.setAccountUsername(result.getString("user_name"));
-			account.setAccountNumber(result.getInt("account_number"));
+			account.setAccountNumber(result.getString("account_number"));
 		}
 		
 		return account;
@@ -72,7 +73,7 @@ public class AccountDAOImpl implements AccountDAO {
 			PreparedStatement statement = conn.prepareStatement(sql);
 			
 			statement.setString(++count, account.getAccountUsername());
-			statement.setInt(++count, account.getAccountNumber());
+			statement.setString(++count, account.getAccountNumber());
 			
 			statement.execute();
 			return true;
@@ -83,6 +84,44 @@ public class AccountDAOImpl implements AccountDAO {
 		
 		return false;
 	}
-
+	
+	@SuppressWarnings("null")
+	@Override
+	public Account getBalance(double accountNumber) {
+		try(Connection conn = ConnectionUtil.getConnection()){
+			String sql = "SELECT account_balance FROM account_balances WHERE account_number = ?";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setDouble(1, accountNumber);
+			ResultSet result = statement.executeQuery();
+			Account account = new Account();
+			
+			statement.execute();
+			if(result.next()) {
+				account.setAccountBalance(result.getDouble("account_balance"));
+			}
+			float accountBalance = result.getFloat("account_balance");
+			
+			return account;
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	/*			ResultSet result = statement.executeQuery();
+			User user = new User();
+			
+			if(result.next()) {
+				user.setFirstName(result.getString("first_name"));
+				user.setLastName(result.getString("last_name"));
+				user.setUsername(result.getString("user_name"));
+				user.setPassword(result.getString("user_password"));
+				user.setRole(result.getString("roles"));
+				user.setAccountActive(result.getBoolean("account_active"));
+			}
+			
+			return user;
+			*/
 }
 

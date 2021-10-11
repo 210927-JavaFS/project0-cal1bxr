@@ -6,7 +6,8 @@ import com.revature.models.Account;
 
 public interface AccountDAO {
 	public List<Account> findAll();
-	public Account findByNumber(int Number);
+	public Account findByNumber(String accountNumber);
+	public Account getBalance(double accountBalance);
 	public boolean updateAccount(Account home);
 	public boolean addAccount(Account home);
 }

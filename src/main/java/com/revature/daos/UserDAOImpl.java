@@ -23,7 +23,7 @@ public class UserDAOImpl implements UserDAO {
 
 			while (result.next()) {
 				User user = new User(result.getString("first_name"), result.getString("last_name"),
-						result.getString("user_name"), result.getString("user_password"), result.getString("user_role"),
+						result.getString("user_name"), result.getString("user_password"), result.getString("roles"),
 						result.getBoolean("acccount_active"));
 				list.add(user);
 			}
@@ -50,7 +50,7 @@ public class UserDAOImpl implements UserDAO {
 				user.setLastName(result.getString("last_name"));
 				user.setUsername(result.getString("user_name"));
 				user.setPassword(result.getString("user_password"));
-				user.setRole(result.getString("user_role"));
+				user.setRole(result.getString("roles"));
 				user.setAccountActive(result.getBoolean("account_active"));
 			}
 			

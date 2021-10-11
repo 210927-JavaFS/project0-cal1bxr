@@ -21,7 +21,7 @@ public class AccountController {
 		}
 	}
 	
-	public void displayOneAccount(int accountNumber) {
+	public void displayOneAccount(String accountNumber) {
 		System.out.println("Here is account " + accountNumber + ":");
 		Account account = accountService.findByNumber(accountNumber);
 		System.out.println(account);
@@ -41,8 +41,11 @@ public class AccountController {
 		int intialDeposit = scan.nextInt();
 		int accountNumber = (int)(Math.random()*1000000000);
 		System.out.println("Your account number is " + accountNumber);
+		String accNum = String.valueOf(accountNumber);
+		float accountBalance = 0.0f;
 		
-		Account account = new Account(accountNumber, userName);
+		
+		Account account = new Account(accNum, userName, accountBalance);
 		User user = new User(firstName, lastName, userName, userPassword);
 		
 		if(accountService.newAccount(account) && userService.newUser(user)) {
@@ -50,5 +53,10 @@ public class AccountController {
 		} else {
 			System.out.println("An error occured. Please try again later. Thanks");
 		}
+	}
+	
+	public void displayAccountBalance(double accountBalance) {
+		System.out.println("Here is the account balance: $" + accountBalance);
+		System.out.println(accountService.getBalance(accountBalance));
 	}
 }

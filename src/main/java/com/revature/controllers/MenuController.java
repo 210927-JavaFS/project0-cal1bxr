@@ -25,7 +25,6 @@ public class MenuController {
 					break;
 				case "0":
 					System.exit(0);
-					break;
 				default:
 					System.out.println("You have entered an invalid selection");
 					welcomeMenu();
@@ -37,27 +36,33 @@ public class MenuController {
 
 	private void accountMenu() {
 		System.out.println("What would you like to do with accounts? \n" + "1) Show all accounts \n"
-				+ "2) Show one account \n" + "3) Return to previous menu \n" + "0) Exit the system");
+				+ "2) Show one account \n" + "3) Display Balance"
+						+ "\n" + "0) Exit the system");
 		String response = scan.nextLine();
 
 		while (!response.equals("0")) {
 			switch (response) {
 				case "1":
 					accountController.displayAllAccounts();
+					System.out.println("\n");
 					accountMenu();
 					break;
 				case "2":
 					System.out.println("Please enter your account number");
-					int accountNumber = scan.nextInt();
+					String accountNumber = scan.nextLine();
 					accountController.displayOneAccount(accountNumber);
+					System.out.println("\n");
 					accountMenu();
 					break;
 				case "3":
+					System.out.println("Please enter your account number");
+					String accountNumer = scan.nextLine();
+					accountController.displayAccountBalance(accountBalance);
+					System.out.println("\n");
 					welcomeMenu();
 					break;
 				case "0":
 					System.exit(0);
-					break;
 				default:
 					System.out.println("You entered and invalid number!");
 					accountMenu();
