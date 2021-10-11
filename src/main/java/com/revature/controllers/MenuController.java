@@ -56,8 +56,8 @@ public class MenuController {
 					break;
 				case "3":
 					System.out.println("Please enter your account number");
-					String accountNumer = scan.nextLine();
-					accountController.displayAccountBalance(accountBalance);
+					String accountNumber2 = scan.nextLine();
+					accountController.displayAccountBalance(accountNumber2);
 					System.out.println("\n");
 					welcomeMenu();
 					break;

@@ -87,19 +87,18 @@ public class AccountDAOImpl implements AccountDAO {
 	
 	@SuppressWarnings("null")
 	@Override
-	public Account getBalance(double accountNumber) {
+	public Account getBalance(String accountNumber) {
 		try(Connection conn = ConnectionUtil.getConnection()){
 			String sql = "SELECT account_balance FROM account_balances WHERE account_number = ?";
 			PreparedStatement statement = conn.prepareStatement(sql);
-			statement.setDouble(1, accountNumber);
+			statement.setString(1, accountNumber);
 			ResultSet result = statement.executeQuery();
 			Account account = new Account();
 			
 			statement.execute();
-			if(result.next()) {
+			while(result.next()) {
 				account.setAccountBalance(result.getDouble("account_balance"));
 			}
-			float accountBalance = result.getFloat("account_balance");
 			
 			return account;
 			

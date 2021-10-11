@@ -55,8 +55,9 @@ public class AccountController {
 		}
 	}
 	
-	public void displayAccountBalance(double accountBalance) {
-		System.out.println("Here is the account balance: $" + accountBalance);
-		System.out.println(accountService.getBalance(accountBalance));
+	public void displayAccountBalance(String accountNumber) {
+		Account account = accountService.getBalance(accountNumber);
+		System.out.println(account);
 	}
+
 }

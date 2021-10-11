@@ -22,7 +22,7 @@ public class AccountService {
 		return accountDao.addAccount(account);
 	}
 	
-	public Account getBalance(double accountBalance) {
-		return accountDao.getBalance(accountBalance);
+	public Account getBalance(String accountNumber) {
+		return accountDao.getBalance(accountNumber);
 	}
 }
