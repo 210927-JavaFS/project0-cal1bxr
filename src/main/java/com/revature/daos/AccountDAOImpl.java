@@ -85,7 +85,7 @@ public class AccountDAOImpl implements AccountDAO {
 		return false;
 	}
 	
-	@SuppressWarnings("null")
+	
 	@Override
 	public Account getBalance(String accountNumber) {
 		try(Connection conn = ConnectionUtil.getConnection()){
@@ -95,11 +95,10 @@ public class AccountDAOImpl implements AccountDAO {
 			ResultSet result = statement.executeQuery();
 			Account account = new Account();
 			
-			statement.execute();
+			//statement3.execute();
 			while(result.next()) {
-				account.setAccountBalance(result.getDouble("account_balance"));
+			account.setAccountBalance(result.getDouble("account_balance"));
 			}
-			
 			return account;
 			
 		} catch(SQLException e) {

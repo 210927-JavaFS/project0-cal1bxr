@@ -3,7 +3,7 @@ package com.revature.models;
 public class Account {
 	private String accountNumber;
 	private String accountUsername;
-	private double accountBalance;
+	public double accountBalance;
 	
 	public Account(String accountNumber, String accountUsername, double accountBalance) {
 		super();

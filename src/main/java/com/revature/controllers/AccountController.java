@@ -27,37 +27,37 @@ public class AccountController {
 		System.out.println(account);
 	}
 	
-	public void openAccount() {
-		System.out.println("Thank you for adding a new account");
-		System.out.println("What is your first name?");
-		String firstName = scan.nextLine();
-		System.out.println("What is your last name?");
-		String lastName = scan.nextLine();
-		System.out.println("Please enter a user name: ");
-		String userName = scan.nextLine();
-		System.out.println("Please enter a password: ");
-		String userPassword = scan.nextLine();
-		System.out.println("Please enter a intial deposit: ");
-		int intialDeposit = scan.nextInt();
-		int accountNumber = (int)(Math.random()*1000000000);
-		System.out.println("Your account number is " + accountNumber);
-		String accNum = String.valueOf(accountNumber);
-		float accountBalance = 0.0f;
-		
-		
-		Account account = new Account(accNum, userName, accountBalance);
-		User user = new User(firstName, lastName, userName, userPassword);
-		
-		if(accountService.newAccount(account) && userService.newUser(user)) {
-			System.out.println("Your account is open contigant on admin approval.");
-		} else {
-			System.out.println("An error occured. Please try again later. Thanks");
-		}
-	}
-	
+//	public void openAccount() {
+//		System.out.println("Thank you for adding a new account");
+//		System.out.println("What is your first name?");
+//		String firstName = scan.nextLine();
+//		System.out.println("What is your last name?");
+//		String lastName = scan.nextLine();
+//		System.out.println("Please enter a user name: ");
+//		String userName = scan.nextLine();
+//		System.out.println("Please enter a password: ");
+//		String userPassword = scan.nextLine();
+//		System.out.println("Please enter a intial deposit: ");
+//		int intialDeposit = scan.nextInt();
+//		int accountNumber = (int)(Math.random()*1000000000);
+//		System.out.println("Your account number is " + accountNumber);
+//		String accNum = String.valueOf(accountNumber);
+//		float accountBalance = 0.0f;
+//		
+//		
+//		Account account = new Account(accNum, userName, accountBalance);
+//		User user = new User(firstName, lastName, userName, userPassword);
+//		
+//		if(accountService.newAccount(account) && userService.newUser(user)) {
+//			System.out.println("Your account is open contigant on admin approval.");
+//		} else {
+//			System.out.println("An error occured. Please try again later. Thanks");
+//		}
+//	}
+//	
 	public void displayAccountBalance(String accountNumber) {
 		Account account = accountService.getBalance(accountNumber);
-		System.out.println(account);
+		System.out.println(account.accountBalance);
 	}
 
 }

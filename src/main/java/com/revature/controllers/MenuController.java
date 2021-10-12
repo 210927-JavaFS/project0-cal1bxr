@@ -2,10 +2,14 @@ package com.revature.controllers;
 
 import java.util.Scanner;
 
+import com.revature.services.TransactionServices;
+
 public class MenuController {
 	private static Scanner scan = new Scanner(System.in);
 	private static UserController userController = new UserController();
 	private static AccountController accountController = new AccountController();
+	private static TransactionServices transactionService = new TransactionServices();
+	
 
 	public void welcomeMenu() {
 		System.out.println("Welcome to the Banking System");
@@ -36,9 +40,9 @@ public class MenuController {
 
 	private void accountMenu() {
 		System.out.println("What would you like to do with accounts? \n" + "1) Show all accounts \n"
-				+ "2) Show one account \n" + "3) Display Balance"
-						+ "\n" + "0) Exit the system");
-		String response = scan.nextLine();
+				+ "2) Show one account \n" + "3) Display Balance \n" + "4) Withdraw Money \n" + "5) Transfer Money \n"
+						+ "6) Deposit Money" + "0) Exit the system");
+		String response = scan.nextLine().toString();
 
 		while (!response.equals("0")) {
 			switch (response) {
@@ -61,6 +65,37 @@ public class MenuController {
 					System.out.println("\n");
 					welcomeMenu();
 					break;
+				case "4":
+					System.out.println("Please enter account number to withdraw from");
+					String accountNum = scan.nextLine();
+					System.out.println("Please enter account withdraw ammount");
+					double withdrawAmount = scan.nextDouble();
+					transactionService.withdraw(accountNum, withdrawAmount);
+					accountController.displayAccountBalance(accountNum);
+				case "5":
+					System.out.println("Please enter account number to transfer from");
+					String accountNum1 = scan.nextLine();
+					System.out.println("Please enter account number to transfer to");
+					String accountNum2 = scan.nextLine();
+					System.out.println("Please enter account transfer ammount");
+					double transferAmount = scan.nextDouble();
+
+					transactionService.transfer(accountNum1, accountNum2, transferAmount);
+					accountController.displayAccountBalance(accountNum1);
+					accountController.displayAccountBalance(accountNum2);
+					break;
+				case "6":
+					System.out.println("Please enter account number to deposit");
+					String accountNum3 = scan.nextLine();
+					System.out.println("Please enter account deposit ammount");
+					double depositAmount = scan.nextDouble();
+					transactionService.deposit(accountNum3, depositAmount);
+					accountController.displayAccountBalance(accountNum3);
+					
+					
+					
+					
+					
 				case "0":
 					System.exit(0);
 				default:
