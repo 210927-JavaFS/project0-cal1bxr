@@ -12,7 +12,6 @@ public class ConnectionUtil {
 		// you are using to make the framework aware of it.
 		try {
 			Class.forName("org.postgresql.Driver");
-			System.out.println("Got connection");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

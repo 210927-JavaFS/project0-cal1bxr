@@ -39,7 +39,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User findUser(String username) {
 		try(Connection conn = ConnectionUtil.getConnection()){
-			String sql = "SELECT * From users WHERE user_name = ?;";
+			String sql = "SELECT * FROM users WHERE user_name = ?;";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setString(1, username);
 			ResultSet result = statement.executeQuery();
@@ -91,7 +91,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User getRole(String username) {
 		try(Connection conn = ConnectionUtil.getConnection()){
-			String sql = "SELECT roles FROM users WHERE user_name = ?";
+			String sql = "SELECT roles FROM users WHERE user_name = ?;";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setString(1, username);
 			ResultSet result = statement.executeQuery();
@@ -100,7 +100,7 @@ public class UserDAOImpl implements UserDAO {
 				user.setRole(result.getString("roles"));
 			}
 			
-			System.out.println(user.getRole());
+//			System.out.println(user.getRole());
 			return user;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -123,7 +123,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User getPassword(String username) {
 		try(Connection conn = ConnectionUtil.getConnection()){
-			String sql = "SELECT user_password FROM users WHERE user_name = ?";
+			String sql = "SELECT user_password FROM users WHERE user_name = ?;";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setString(1, username);
 			ResultSet result = statement.executeQuery();
@@ -132,8 +132,8 @@ public class UserDAOImpl implements UserDAO {
 				user.setPassword(result.getString("user_password"));
 			}
 			
-			System.out.println(user.getPassword());
-			return user;
+			return user;			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

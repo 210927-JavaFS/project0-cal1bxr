@@ -16,8 +16,8 @@ public class MenuController {
 		String user = scan.nextLine();
 		String password = scan.nextLine();
 		String accountType = userController.getRoles(user);
-		String accountPassword = userController.getPass(password);
-		if(accountType.equals("admin") && accountPassword.equals("Password1")) {
+		String accountPassword = userController.getPass(user);
+		if(accountType.equals("admin") && accountPassword.equals(password)) {
 			System.out.println("It worked");
 		} else {
 			System.out.println("Keep trying");

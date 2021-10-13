@@ -34,6 +34,10 @@ public class UserController {
 		return user.getPassword();
 	}
 	
+//	public boolean newUser() {
+//		User user = userService.newUser(User);
+//	}
+	
 	public void userMenu() {
 		System.out.println("what would you like to do with users? \n" + "1) See all users \n" + "2) See one user \n"
 				+ "3) Add a user to the system \n" + "4) Approve/Cancel a User account \n"
@@ -60,12 +64,13 @@ public class UserController {
 			case "4":
 				System.out.println("Enter username you would like to see role for");
 				String userName1 = scan.nextLine();
-				getRoles(userName1);
+				System.out.println(getRoles(userName1));
+
 				userMenu();
 				break;
-//			case "5":
-//				welcomeMenu();
-//				break;
+			case "5":
+				newUser();
+				break;
 			case "0":
 				System.exit(0);
 			default:
