@@ -20,4 +20,20 @@ public class UserService {
 	public boolean newUser(User user) {
 		return userDao.addUser(user);
 	}
+	
+	public User userRole(String username) {
+		return userDao.getRole(username);
+	}
+	
+	public User assignRole(String username) {
+		return userDao.setRole(username);
+	}
+	
+	public boolean accActive(String username) {
+		return userDao.accActive(username);
+	}
+	
+	public User userPassword(String password) {
+		return userDao.getPassword(password);
+	}
 }

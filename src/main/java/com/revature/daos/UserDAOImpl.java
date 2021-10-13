@@ -24,7 +24,7 @@ public class UserDAOImpl implements UserDAO {
 			while (result.next()) {
 				User user = new User(result.getString("first_name"), result.getString("last_name"),
 						result.getString("user_name"), result.getString("user_password"), result.getString("roles"),
-						result.getBoolean("acccount_active"));
+						result.getBoolean("account_active"));
 				list.add(user);
 			}
 
@@ -86,6 +86,58 @@ public class UserDAOImpl implements UserDAO {
 		}
 		
 		return false;
+	}
+
+	@Override
+	public User getRole(String username) {
+		try(Connection conn = ConnectionUtil.getConnection()){
+			String sql = "SELECT roles FROM users WHERE user_name = ?";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setString(1, username);
+			ResultSet result = statement.executeQuery();
+			User user = new User();
+			if(result.next()) {
+				user.setRole(result.getString("roles"));
+			}
+			
+			System.out.println(user.getRole());
+			return user;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public User setRole(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean accActive(String username) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public User getPassword(String username) {
+		try(Connection conn = ConnectionUtil.getConnection()){
+			String sql = "SELECT user_password FROM users WHERE user_name = ?";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setString(1, username);
+			ResultSet result = statement.executeQuery();
+			User user = new User();
+			if(result.next()) {
+				user.setPassword(result.getString("user_password"));
+			}
+			
+			System.out.println(user.getPassword());
+			return user;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
