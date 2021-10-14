@@ -65,7 +65,7 @@ public class UserController {
 	public void adminMenu() {
 		System.out.println("what would you like to do? \n" + "1) Account Menus \n" + "2) Transaction Menus \n"
 				+ "3) Add a user to the system \n" + "4) See user role \n"
-				+ "5) Approve/Deny Account \n" + "0) Exit the application");
+				+ "5) Approve/Deny Account \n" + "0) Logout");
 
 		String response = scan.nextLine();
 
@@ -110,7 +110,7 @@ public class UserController {
 	public void employeeMenu() {
 		System.out.println("what would you like to do? \n" + "1) See all users \n" + "2) See one user \n"
 				+ "3) Add a user to the system \n" + "4) Tranaction Menus \n"
-				+ "5) Approve/Deny Account \n" + "0) Exit the application");
+				+ "5) Approve/Deny Account \n" + "0) Logout");
 
 		String response = scan.nextLine();
 
