@@ -7,7 +7,6 @@ import com.revature.services.TransactionService;
 public class MenuController {
 	private static Scanner scan = new Scanner(System.in);
 	private static UserController userController = new UserController();
-	private static AccountController accountController = new AccountController();
 //	private static TransactionService transactionService = new TransactionService();
 
 	public void welcomeMenu() {
@@ -17,29 +16,16 @@ public class MenuController {
 		String password = scan.nextLine();
 		String accountType = userController.getRoles(user);
 		String accountPassword = userController.getPass(user);
-		if(accountType.equals("admin") && accountPassword.equals(password)) {
-			System.out.println("It worked");
+		if (accountType.equals("customer") && accountPassword.equals(password)) {
+			userController.customerMenu();
+		} else if (accountType.equals("employee") && accountPassword.equals(password)) {
+			userController.employeeMenu();
+		} else if (accountType.equals("admin") && accountPassword.equals(password)) {
+			userController.adminMenu();
 		} else {
-			System.out.println("Keep trying");
+			System.out.println("Not a valid user");
 		}
-		System.out.println(
-				"What would you like to do? \n" + "1) See Account Options \n" + "2) See User Options \n" + "0) Exit");
-		String response = scan.nextLine();
-		while (!response.equals("0")) {
-			switch (response) {
-			case "1":
-				accountController.accountMenu();
-				break;
-			case "2":
-				userController.userMenu();
-				break;
-			case "0":
-				System.exit(0);
-			default:
-				System.out.println("You have entered an invalid selection");
-				welcomeMenu();
-			}
-		}
+		
 	}
 
 //	private void accountMenu() {
