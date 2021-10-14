@@ -1,0 +1,4 @@
+00:16:48.132 [] [main] DEBUG com.revature.Driver - Entering main menu controller
+00:32:03.973 [] [main] INFO  com.revature.Driver - Entering main menu controller
+00:34:16.037 [] [main] INFO  com.revature.Driver - Entering main menu controller
+00:39:38.050 [] [main] INFO  com.revature.Driver - Entering main menu controller

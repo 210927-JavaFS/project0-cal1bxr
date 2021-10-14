@@ -1,22 +1,20 @@
 package com.revature;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+
 import com.revature.controllers.MenuController;
-import com.revature.models.User;
+
 
 public class Driver {
 
 	private static MenuController menuController = new MenuController();
-	private static User user = new User();
-
+	private static Logger log = LoggerFactory.getLogger(Driver.class);
+	
 	public static void main(String[] args) {
-
-		user.getPassword();
+		log.info("Entering main menu controller");
+		MDC.put("MJ", "1");
 		menuController.welcomeMenu();
 	}
-
-
-
-	private User loginMenu(String username, String Password) {
-		
-		return user;	}
 }

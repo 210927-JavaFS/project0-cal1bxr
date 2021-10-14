@@ -166,8 +166,12 @@ public class UserController {
 			System.out.println("Please enter account withdraw ammount");
 			double withdrawAmount = scan.nextDouble();
 			scan.nextLine();
+			if(withdrawAmount < 0) {
+				System.out.println("Amount for withdraw must be greater than 0");
+			} else {
 			transactionService.getWithdraw(accountNum, withdrawAmount);
 			displayAccountBalance(accountNum);
+			}
 			System.out.println("\n");
 			customerMenu();
 			break;
@@ -177,8 +181,12 @@ public class UserController {
 			System.out.println("Please enter account deposit ammount");
 			double depositAmount = scan.nextDouble();
 			scan.nextLine();
+			if(depositAmount < 0) {
+				System.out.println("Deposit amount must be greater than 0");
+			} else {
 			transactionService.getDeposit(accountNum3, depositAmount);
 			displayAccountBalance(accountNum3);
+			}
 			System.out.println("\n");
 			customerMenu();
 			break;
