@@ -31,6 +31,11 @@ public class AccountController {
 		System.out.println(account.accountBalance);
 	}
 	
+	public void withdrawMoney(String accountNumber, double withdrawAmount) {
+		Account account = accountService.getWithdraw(accountNumber, withdrawAmount);
+		System.out.println(account.accountBalance);
+	}
+	
 	public void accountMenu() {
 		System.out.println("What would you like to do with accounts? \n" + "1) Show all accounts \n"
 				+ "2) Show one account \n" + "3) Display Balance \n" + "4) Withdraw Money \n" + "5) Transfer Money \n"
@@ -63,8 +68,7 @@ public class AccountController {
 			System.out.println("Please enter account withdraw ammount");
 			double withdrawAmount = scan.nextDouble();
 			scan.nextLine();
-			transactionService.getWithdraw(accountNum, withdrawAmount);
-			displayAccountBalance(accountNum);
+			withdrawMoney(accountNum, withdrawAmount);
 			System.out.println("\n");
 			accountMenu();
 			break;

@@ -2,3 +2,19 @@
 00:32:03.973 [] [main] INFO  com.revature.Driver - Entering main menu controller
 00:34:16.037 [] [main] INFO  com.revature.Driver - Entering main menu controller
 00:39:38.050 [] [main] INFO  com.revature.Driver - Entering main menu controller
+17:49:40.940 [] [main] INFO  com.revature.utils.ValidationTesting - Transfer Test
+17:49:41.325 [] [main] INFO  com.revature.utils.ValidationTesting - Withraw Test
+17:49:41.705 [] [main] INFO  com.revature.utils.ValidationTesting - Deposit Test
+17:49:50.489 [] [main] INFO  com.revature.Driver - Entering main menu controller
+17:55:06.272 [] [main] INFO  com.revature.Driver - Entering main menu controller
+17:56:47.054 [] [main] INFO  com.revature.Driver - Entering main menu controller
+17:57:13.307 [] [main] INFO  com.revature.Driver - Entering main menu controller
+17:58:00.023 [] [main] INFO  com.revature.Driver - Entering main menu controller
+17:58:10.008 [] [main] INFO  com.revature.Driver - Entering main menu controller
+18:04:37.686 [] [main] INFO  com.revature.Driver - Entering main menu controller
+18:07:17.947 [] [main] INFO  com.revature.Driver - Entering main menu controller
+18:13:30.010 [] [main] INFO  com.revature.Driver - Entering main menu controller
+18:14:40.012 [] [main] INFO  com.revature.Driver - Entering main menu controller
+18:16:29.605 [] [main] INFO  com.revature.Driver - Entering main menu controller
+18:21:30.902 [] [main] INFO  com.revature.Driver - Entering main menu controller
+18:24:05.316 [] [main] INFO  com.revature.Driver - Entering main menu controller

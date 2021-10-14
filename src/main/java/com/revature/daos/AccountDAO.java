@@ -10,4 +10,7 @@ public interface AccountDAO {
 	public Account getBalance(String accountNumber);
 	public boolean updateAccount(Account home);
 	public boolean addAccount(Account home);
+	public Account withdraw(String accountNumber, double withdrawAmount);
+	public Account deposit(String accountNumber, double depositAmount);
+	public Account transfer(String accountNumber1, String accountNumber2, double transferAmount);
 }

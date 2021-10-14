@@ -13,7 +13,7 @@ public class UserController {
 	Scanner scan = new Scanner(System.in);
 	private UserService userService = new UserService();
 	private AccountService accountService = new AccountService();
-	private TransactionService transactionService = new TransactionService();
+
 
 	public void displayAllAccounts() {
 		System.out.println("Here is a list of your accounts");
@@ -169,8 +169,7 @@ public class UserController {
 			if(withdrawAmount < 0) {
 				System.out.println("Amount for withdraw must be greater than 0");
 			} else {
-			transactionService.getWithdraw(accountNum, withdrawAmount);
-			displayAccountBalance(accountNum);
+			accountService.getWithdraw(accountNum, withdrawAmount);
 			}
 			System.out.println("\n");
 			customerMenu();
@@ -184,7 +183,7 @@ public class UserController {
 			if(depositAmount < 0) {
 				System.out.println("Deposit amount must be greater than 0");
 			} else {
-			transactionService.getDeposit(accountNum3, depositAmount);
+			accountService.getDeposit(accountNum3, depositAmount);
 			displayAccountBalance(accountNum3);
 			}
 			System.out.println("\n");
@@ -198,7 +197,7 @@ public class UserController {
 			System.out.println("Please enter account transfer ammount");
 			double transferAmount = scan.nextDouble();
 			scan.nextLine();
-			transactionService.getTransfer(accountNum1, accountNum2, transferAmount);
+			accountService.getTransfer(accountNum1, accountNum2, transferAmount);
 			displayAccountBalance(accountNum1);
 			displayAccountBalance(accountNum2);
 			System.out.println("\n");

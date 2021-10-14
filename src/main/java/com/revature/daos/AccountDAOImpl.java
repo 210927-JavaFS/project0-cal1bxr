@@ -99,6 +99,7 @@ public class AccountDAOImpl implements AccountDAO {
 			while(result.next()) {
 			account.setAccountBalance(result.getDouble("account_balance"));
 			}
+			
 			return account;
 			
 		} catch(SQLException e) {
@@ -107,19 +108,67 @@ public class AccountDAOImpl implements AccountDAO {
 		
 		return null;
 	}
-	/*			ResultSet result = statement.executeQuery();
-			User user = new User();
-			
+
+	@Override
+	public Account withdraw(String accountNumber, double withdrawAmount) {
+		try (Connection conn = ConnectionUtil.getConnection()) {
+			String sql = "SELECT account_balance FROM account_balances WHERE account_number = ?";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setString(1, accountNumber);
+			ResultSet result = statement.executeQuery();
+			Account account = new Account();
 			if(result.next()) {
-				user.setFirstName(result.getString("first_name"));
-				user.setLastName(result.getString("last_name"));
-				user.setUsername(result.getString("user_name"));
-				user.setPassword(result.getString("user_password"));
-				user.setRole(result.getString("roles"));
-				user.setAccountActive(result.getBoolean("account_active"));
+			account.setAccountBalance(result.getDouble("account_balance"));
 			}
+			double newBalance = account.accountBalance - withdrawAmount;
 			
-			return user;
-			*/
+			String sql2 = "UPDATE account_balances SET account_balance = ? WHERE account_number = ?";
+			PreparedStatement statement2 = conn.prepareStatement(sql2);
+			statement2.setDouble(1, newBalance);
+			statement2.setString(2, accountNumber);
+			statement2.execute();
+			
+			
+			return account;
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	@Override
+	public Account deposit(String accountNumber, double depositAmount) {
+		try (Connection conn = ConnectionUtil.getConnection()) {
+			String sql = "SELECT account_balance FROM account_balances WHERE account_number = ?";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setString(1, accountNumber);
+			ResultSet result = statement.executeQuery();
+			Account account = new Account();
+			if(result.next()) {
+			account.setAccountBalance(result.getDouble("account_balance"));
+			}
+			double newBalance = account.accountBalance - depositAmount;
+			
+			String sql2 = "UPDATE account_balances SET account_balance = ? WHERE account_number = ?";
+			PreparedStatement statement2 = conn.prepareStatement(sql2);
+			statement2.setDouble(1, newBalance);
+			statement2.setString(2, accountNumber);
+			statement2.execute();
+			
+			
+			return account;
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}		return null;
+	}
+
+	@Override
+	public Account transfer(String accountNumber1, String accountNumber2, double transferAmount) {
+		withdraw(accountNumber1, transferAmount);
+		deposit(accountNumber2, transferAmount);
+		
+		return null;
+	}
 }
 
