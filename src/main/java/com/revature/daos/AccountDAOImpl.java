@@ -83,7 +83,7 @@ public class AccountDAOImpl implements AccountDAO {
 	@Override
 	public Account getBalance(String accountNumber) {
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String sql = "SELECT account_balance FROM account_balances WHERE account_number = ?";
+			String sql = "SELECT account_balances FROM account_balances WHERE account_number = ?";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setString(1, accountNumber);
 			ResultSet result = statement.executeQuery();
@@ -91,7 +91,7 @@ public class AccountDAOImpl implements AccountDAO {
 
 			// statement3.execute();
 			while (result.next()) {
-				account.setAccountBalance(result.getDouble("account_balance"));
+				account.setAccountBalance(result.getDouble("account_balances"));
 			}
 
 			return account;
@@ -106,13 +106,13 @@ public class AccountDAOImpl implements AccountDAO {
 	@Override
 	public Account withdraw(String accountNumber, double withdrawAmount) {
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String sql = "SELECT account_balance FROM account_balances WHERE account_number = ?";
+			String sql = "SELECT account_balances FROM account_balances WHERE account_number = ?";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setString(1, accountNumber);
 			ResultSet result = statement.executeQuery();
 			Account account = new Account();
 			if (result.next()) {
-				account.setAccountBalance(result.getDouble("account_balance"));
+				account.setAccountBalance(result.getDouble("account_balances"));
 			}
 
 			if (withdrawAmount < 0) {
@@ -121,7 +121,7 @@ public class AccountDAOImpl implements AccountDAO {
 				System.out.println("Account balance is 0. Can not withdraw money");
 			} else {
 				double newBalance = account.accountBalance - withdrawAmount;
-				String sql2 = "UPDATE account_balances SET account_balance = ? WHERE account_number = ?";
+				String sql2 = "UPDATE account_balances SET account_balances = ? WHERE account_number = ?";
 				PreparedStatement statement2 = conn.prepareStatement(sql2);
 				statement2.setDouble(1, newBalance);
 				statement2.setString(2, accountNumber);
@@ -139,20 +139,20 @@ public class AccountDAOImpl implements AccountDAO {
 	@Override
 	public Account deposit(String accountNumber, double depositAmount) {
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String sql = "SELECT account_balance FROM account_balances WHERE account_number = ?";
+			String sql = "SELECT account_balances FROM account_balances WHERE account_number = ?";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setString(1, accountNumber);
 			ResultSet result = statement.executeQuery();
 			Account account = new Account();
 			if (result.next()) {
-				account.setAccountBalance(result.getDouble("account_balance"));
+				account.setAccountBalance(result.getDouble("account_balances"));
 			}
 
 			if (depositAmount < 0) {
 				System.out.println("Can not deposit a negative amount of money");
 			} else {
 				double newBalance = account.accountBalance + depositAmount;
-				String sql2 = "UPDATE account_balances SET account_balance = ? WHERE account_number = ?";
+				String sql2 = "UPDATE account_balances SET account_balances = ? WHERE account_number = ?";
 				PreparedStatement statement2 = conn.prepareStatement(sql2);
 				statement2.setDouble(1, newBalance);
 				statement2.setString(2, accountNumber);
@@ -168,9 +168,9 @@ public class AccountDAOImpl implements AccountDAO {
 
 	@Override
 	public Account transfer(String accountNumber1, String accountNumber2, double transferAmount) {
+		Account account = new Account();
 		withdraw(accountNumber1, transferAmount);
 		deposit(accountNumber2, transferAmount);
-
-		return null;
-	}
+		return account;
+}
 }

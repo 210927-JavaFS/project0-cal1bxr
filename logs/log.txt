@@ -51,3 +51,8 @@
 08:13:24.503 [] [main] INFO  com.revature.Driver - Entering main menu controller
 08:16:17.229 [] [main] INFO  com.revature.Driver - Entering main menu controller
 08:16:53.223 [] [main] INFO  com.revature.Driver - Entering main menu controller
+09:22:07.451 [] [main] INFO  com.revature.Driver - Entering main menu controller
+09:29:07.819 [] [main] INFO  com.revature.Driver - Entering main menu controller
+09:31:42.065 [] [main] INFO  com.revature.Driver - Entering main menu controller
+09:32:35.471 [] [main] INFO  com.revature.Driver - Entering main menu controller
+09:33:22.508 [] [main] INFO  com.revature.Driver - Entering main menu controller
