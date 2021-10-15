@@ -60,12 +60,15 @@ public class AccountDAOImpl implements AccountDAO {
 	@Override
 	public boolean addAccount(Account account) {
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String sql = "INSERT INTO accounts (user_name, account_number) " + "VALUES (?,?);";
-			int count = 0;
+			String sql = "INSERT INTO accounts (user_name, account_number) VALUES (?,?);"+
+						"INSERT INTO account_balances (user_name, account_number, account_balances) VALUES (?,?,?)";
 			PreparedStatement statement = conn.prepareStatement(sql);
 
-			statement.setString(++count, account.getAccountUsername());
-			statement.setString(++count, account.getAccountNumber());
+			statement.setString(1, account.getAccountUsername());
+			statement.setString(2, account.getAccountNumber());
+			statement.setString(3, account.getAccountUsername());
+			statement.setString(4, account.getAccountNumber());
+			statement.setDouble(5, account.getAccountBalance());
 
 			statement.execute();
 			return true;

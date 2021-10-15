@@ -32,6 +32,13 @@ public class Account {
 		this.transferAmount = transferAmount;
 	}
 
+	public Account(String accountNumber, String accountUsername, double accountBalance) {
+		super();
+		this.accountNumber = accountNumber;
+		this.accountUsername = accountUsername;
+		this.accountBalance = accountBalance;
+	}
+
 	public Account(String accountNumber, String accountUsername) {
 		super();
 		this.accountNumber = accountNumber;

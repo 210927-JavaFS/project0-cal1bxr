@@ -35,8 +35,6 @@ public class PassEncTech1 {
 	        }  
 	          
 	        /* Display the unencrypted and encrypted passwords. */  
-	        System.out.println("Plain-text password: " + password1);  
-	        System.out.println("Encrypted password using MD5: " + encryptedpassword);
 			return encryptedpassword;  
 	    }  
 	} 
