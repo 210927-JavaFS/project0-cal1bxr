@@ -17,10 +17,6 @@ public class UserService {
 		return userDao.findUser(username);
 	}
 	
-	public boolean newUser(User user) {
-		return userDao.addUser(user);
-	}
-	
 	public User userRole(String username) {
 		return userDao.getRole(username);
 	}
@@ -29,11 +25,15 @@ public class UserService {
 		return userDao.setRole(username);
 	}
 	
-	public boolean accActive(String username) {
-		return userDao.accActive(username);
+	public boolean accActive(boolean accounntActive, String username) {
+		return userDao.accActive(accounntActive, username);
 	}
 	
 	public User userPassword(String password) {
 		return userDao.getPassword(password);
+	}
+	
+	public boolean addUser(User user) {
+				return userDao.addUser(user);
 	}
 }

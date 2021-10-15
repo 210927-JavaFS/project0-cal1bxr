@@ -1,18 +1,20 @@
 package com.revature.controllers;
 
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 import com.revature.models.Account;
 import com.revature.models.User;
 import com.revature.services.AccountService;
-import com.revature.services.TransactionService;
 import com.revature.services.UserService;
+import com.revature.utils.PassEncTech1;
 
 public class UserController {
 	Scanner scan = new Scanner(System.in);
 	private UserService userService = new UserService();
 	private AccountService accountService = new AccountService();
+
 
 
 	public void displayAllAccounts() {
@@ -41,6 +43,26 @@ public class UserController {
 			System.out.println(user);
 		}
 	}
+	
+	public void addAccount() {
+		System.out.println("Enter information for new account");
+		String username = scan.nextLine();
+		int randomNumber = 100000000 + new Random().nextInt(90000000);
+		String accountNumber = String.valueOf(randomNumber);
+		Account account = new Account(accountNumber, username);
+		
+		if(accountService.newAccount(account)) {
+			System.out.println("New user successfully created");
+		}else {
+			System.out.println("Something went wrong. We could not registeryour user. Please try again.");
+		}
+		
+	}
+	
+	public void accActive(boolean activeRole1, String username1) {
+		userService.accActive(activeRole1, username1);
+			
+	}
 
 	public void showUser(String userName) {
 
@@ -57,15 +79,55 @@ public class UserController {
 		User user = userService.userPassword(password);
 		return user.getPassword();
 	}
-
-//	public boolean newUser() {
-//		User user = userService.newUser(User);
-//	}
+	
+	public void addUser() {
+		System.out.println("Please enter info for the user you would like to add.");
+		System.out.println("Please enter your first name?");
+		String firstname = scan.nextLine();
+		System.out.println("What is your last name?");
+		String lastname = scan.nextLine();
+		System.out.println("What username would you like?");
+		String username = scan.nextLine();
+		System.out.println("What is your password?");
+		String password = scan.nextLine();
+		String encPassword = PassEncTech1.passwordEncryption(password);
+		System.out.println("What role is the user?");
+		String role = scan.nextLine();
+		System.out.println("Is the account active");
+		boolean accountActive = scan.nextBoolean();
+		
+		User user = new User(firstname, lastname, username, encPassword, role, accountActive);
+		
+		if(userService.addUser(user)) {
+			System.out.println("New user successfully created");
+		}else {
+			System.out.println("Something went wrong. We could not registeryour user. Please try again.");
+		}
+	}
+	
+	public void userLogin() {
+		System.out.print("Enter your username: ");
+		String user = scan.nextLine();
+		System.out.print("Enter your password: ");
+		String password = scan.nextLine();
+		String encPassword = PassEncTech1.passwordEncryption(password);
+		String accountType = getRoles(user);
+		String accountPassword = getPass(user);
+		if (accountType.equals("customer") && accountPassword.equals(encPassword)) {
+			customerMenu();
+		} else if (accountType.equals("employee") && accountPassword.equals(encPassword)) {
+			employeeMenu();
+		} else if (accountType.equals("admin") && accountPassword.equals(encPassword)) {
+			adminMenu();
+		} else {
+			System.out.println("Not a valid user");
+		}
+		
+	};
 
 	public void adminMenu() {
 		System.out.println("what would you like to do? \n" + "1) Account Menus \n" + "2) Transaction Menus \n"
-				+ "3) Add a user to the system \n" + "4) See user role \n"
-				+ "5) Approve/Deny Account \n" + "0) Logout");
+				+ "3) See user role \n" + "5) Activate/Inactive Account \n" + "0) Logout");
 
 		String response = scan.nextLine();
 
@@ -82,20 +144,27 @@ public class UserController {
 				adminMenu();
 				break;
 
-			case "4":
+			case "3":
 				System.out.println("Enter username you would like to see role for");
 				String userName1 = scan.nextLine();
 				System.out.println(getRoles(userName1));
 				System.out.println("\n");
 				adminMenu();
 				break;
-			case "5":
+			case "4":
 				System.out.println("Aprove/Deny account");
 				System.out.println("\n");
 				adminMenu();
 				break;
 			
-			case "0":
+			case "5":
+				System.out.println("Enter username for new account");
+				String username1 = scan.nextLine();
+				System.out.println("What is the account status? true for active, false for inactive");
+				boolean activeRole1 = scan.hasNext();
+				accActive(activeRole1, username1);
+				System.out.println("\n");
+				adminMenu();
 				System.exit(0);
 			default:
 				System.out.println("You have enter and invalid selection!");
@@ -129,7 +198,8 @@ public class UserController {
 				employeeMenu();
 				break;
 			case "3":
-				System.out.println("Will add a user");
+				addUser();
+				System.out.println("\n");
 				employeeMenu();
 				break;
 			case "4":
@@ -150,7 +220,7 @@ public class UserController {
 	public void customerMenu() {
 		System.out.println(
 				"What would you like to do? \n" + "1) Display Account Balance \n" + "2) Withdraw Money From Account \n"
-						+ "3) Deposit Money Into Account \n" + "4) Transfer Money to an Account \n");
+						+ "3) Deposit Money Into Account \n" + "4) Transfer Money to an Account \n " + "5) Apply for and Account");
 		String response = scan.nextLine().toString();
 		switch (response) {
 		case "1":
@@ -202,6 +272,10 @@ public class UserController {
 			displayAccountBalance(accountNum2);
 			System.out.println("\n");
 			customerMenu();
+			break;
+		case "5":
+			addAccount();
+			System.out.println("\n");
 			break;
 		case "0":
 			System.exit(0);

@@ -8,7 +8,6 @@ public interface AccountDAO {
 	public List<Account> findAll();
 	public Account findByNumber(String accountNumber);
 	public Account getBalance(String accountNumber);
-	public boolean updateAccount(Account home);
 	public boolean addAccount(Account home);
 	public Account withdraw(String accountNumber, double withdrawAmount);
 	public Account deposit(String accountNumber, double depositAmount);

@@ -14,14 +14,8 @@ public class Driver {
 	public static void main(String[] args) {
 		log.info("Entering main menu controller");
 		MDC.put("MJ", "1");
-		
-//		Account account = new Account();
-//		Scanner scan = new Scanner(System.in);
-//		System.out.println("Account number");
-//		String accNum = scan.nextLine();
-//		System.out.println("Amount");
-//		double withdraw = scan.nextDouble();
-//		scan.nextLine();
+//		String password = "Password1";
+//		PassEncTech1.passwordEncryption(password);
 		menuController.welcomeMenu();
 	}
 }
